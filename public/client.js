@@ -1,7 +1,6 @@
 import * as THREE from '/build/three.module.js';
 import { OrbitControls } from './jsm/controls/OrbitControls.js';
 import { GLTFLoader } from './jsm/loaders/GLTFLoader.js'
-import { GUI } from './jsm/libs/dat.gui.module.js';
 import Stats from './jsm/libs/stats.module.js';
 
 let scene;
@@ -69,34 +68,13 @@ const init = () => {
     scene.add(spotLight3);
 
 
-    // helper code for setting light position
-    const gui = new GUI();
-
-    // blue light controls
-    const blueLight = gui.addFolder('BlueLight');
-    blueLight.add(spotLight1.position, "x", -30, 30, 1);
-    blueLight.add(spotLight1.position, "y", -30, 30, 1);
-    blueLight.add(spotLight1.position, "z", -30, 30, 1);
-
-    // orenge light controls
-    const orengeLight = gui.addFolder('OrengeLight');
-    orengeLight.add(spotLight2.position, "x", -40, 40, 1);
-    orengeLight.add(spotLight2.position, "y", -40, 40, 1);
-    orengeLight.add(spotLight2.position, "z", -40, 40, 1);
-
-    // back light controls
-    const backLight = gui.addFolder('BackLight');
-    backLight.add(spotLight3.position, "x", -40, 40, 1);
-    backLight.add(spotLight3.position, "y", -40, 40, 1);
-    backLight.add(spotLight3.position, "z", -40, 40, 1);
-
     // loding gltf 3d model
     const loader = new GLTFLoader();
-    loader.load('./model/scene.glb', (gltf) => {
+    loader.load('./model2/moongalaxy.glb', (gltf) => {
         house = gltf.scene.children[0];
         house.scale.set(0.4, 0.4, 0.4)
-        house.position.set(0, -1.3, 0)
-        house.rotation.x = Math.PI / -3
+        // house.position.set(0, -1.3, 0)
+        // house.rotation.x = Math.PI / -3
         scene.add(gltf.scene);
     });
 
@@ -112,10 +90,10 @@ const render = () => {
 let step = 0
 const animate = () => {
     requestAnimationFrame(animate);
-    step += 0.02;
-    house.position.y =  2*Math.abs(Math.sin(step));
+    // step += 0.02;
+    // house.position.y =  2*Math.abs(Math.sin(step));
     // console.log(2*Math.abs(Math.sin(step)))
-    house.rotation.y = Math.sin(step)*(Math.abs(Math.cos(step / 3) / 4));
+    // house.rotation.y = Math.sin(step)*(Math.abs(Math.cos(step / 3) / 4));
 
     render();
     stats.update();
